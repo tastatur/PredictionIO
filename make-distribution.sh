@@ -19,6 +19,11 @@ set -e
 FWDIR="$(cd `dirname $0`; pwd)"
 DISTDIR="${FWDIR}/dist"
 
+cd sbt
+wget http://dl.bintray.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.7/sbt-launch.jar
+mv sbt-launch.jar sbt-launch-0.13.7.jar
+cd -
+
 VERSION=$(grep version ${FWDIR}/build.sbt | grep ThisBuild | grep -o '".*"' | sed 's/"//g')
 
 echo "Building binary distribution for PredictionIO $VERSION..."
